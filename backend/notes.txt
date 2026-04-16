@@ -1,0 +1,49 @@
+npm install pg
+npm i prisma
+
+const { Pool } = require("pg");
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+});
+
+module.exports = pool;
+
+
+
+---- now usin the Prisma ORM  -----
+
+npm install prisma --save-dev
+npm install @prisma/client
+
+npx prisma init 
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String?  
+  email     String   @unique
+  password  String?
+  createdAt DateTime @default(now())
+}
+
+npx prisma migrate dev --name  add_password
+
+
+
+Category	Methods
+Create	create, createMany
+Read	findMany, findUnique, findFirst
+Update	update, updateMany, upsert
+Delete	delete, deleteMany
+Other	count, aggregate, $transaction
+🚀 Most Used in Real Projects
+
+If you remember just these, you’re already strong:
+
+create
+findMany
+findUnique
+update
+delete
+upsert ⭐
