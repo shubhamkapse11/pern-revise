@@ -45,6 +45,10 @@ const updateUser = async (req, res) => {
             return errorResponse(res, "User not found", 404);
         }
         const { name, email } = req.body;
+        console.log("name-->", name, "email-->", email);
+        if (!name && !email) {
+            return errorResponse(res, "Name and email are required", 400);
+        }
         const updatedUser = await prisma.user.update({
             where: { id: parseInt(id) },
             data: {
